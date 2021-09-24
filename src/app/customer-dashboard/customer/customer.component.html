@@ -1,0 +1,19 @@
+<mat-expansion-panel (opened)="visible = true" (closed)="visible = false">
+  <mat-expansion-panel-header
+    class="customer-row"
+    [ngClass]="{ selected: change === true }"
+  >
+    <mat-panel-title>
+      {{ data.name.firstname | titlecase }}
+      {{ data.name.lastname | titlecase }}
+    </mat-panel-title>
+    <mat-spinner diameter="40" *ngIf="showSpinner"></mat-spinner>
+    <span>
+      {{ visible ? "hide address" : "click to see address" }}
+    </span>
+  </mat-expansion-panel-header>
+  <app-customer-detail
+    (clicked)="toggleColor()"
+    [data]="data"
+  ></app-customer-detail>
+</mat-expansion-panel>

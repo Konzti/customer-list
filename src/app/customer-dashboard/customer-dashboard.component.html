@@ -1,0 +1,14 @@
+<div class="container" fxLayout="column" fxFlexAlign="center">
+  <h3>{{title| uppercase}}</h3>
+  <div class="customer"
+    fxLayout="column"
+    fxLayout.xs="column"
+    fxLayoutWrap="no-wrap"
+    fxLayoutGap=".25rem"
+    fxLayoutAlign="space-between"
+  >
+    <ng-container *ngFor="let c of customers; let i = index">
+      <app-customer [data]="c"></app-customer>
+    </ng-container>
+  </div>
+</div>
