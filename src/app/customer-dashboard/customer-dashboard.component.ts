@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from './services/customer-service.service';
+import { Customer } from './mock-server/customer';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -7,13 +9,17 @@ import { CustomerService } from './services/customer-service.service';
   styleUrls: ['./customer-dashboard.component.css'],
 })
 export class CustomerDashboardComponent implements OnInit {
-  customers: any = [];
-  title: string = "customer dashboard"
-  
+  customers: Customer[] = [];
+
+  title: string = 'customer dashboard';
+
+  showSpinner: boolean = false;
+
   getCustomers(): void {
+    this.showSpinner = true;
     this.customerService.getCustomers().subscribe((data) => {
       this.customers = data;
-      // console.log(this.customers);
+      this.showSpinner = false;
     });
   }
 

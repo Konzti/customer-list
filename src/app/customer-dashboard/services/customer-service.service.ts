@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Customer } from '../mock-server/customer';
 import { customerList } from '../mock-server/server';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CustomerService {
-  constructor() {
-    this.getCustomers();
-  }
-  getCustomers(): Observable<{}[]> {
-    const customers = of(customerList);
-    return customers;
+  constructor(public httpClient: HttpClient) {}
+
+  customerURL: string = 'https://fakestoreapi.com/users';
+
+  getCustomers(): Observable<Customer[]> {
+    return this.httpClient.get<Customer[]>(this.customerURL);
   }
 }

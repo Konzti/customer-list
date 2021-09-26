@@ -4,6 +4,7 @@ import { CustomerDashboardComponent } from './customer-dashboard.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerComponent } from './customer/customer.component';
 import { MaterialModule } from '../material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,9 @@ import { MaterialModule } from '../material/material.module';
     CustomerDetailComponent,
     CustomerComponent,
   ],
-  imports: [CommonModule, MaterialModule],
-  exports: [CustomerDashboardComponent]
+
+  imports: [CommonModule, MaterialModule, HttpClientModule],
+
+  exports: [CustomerDashboardComponent],
 })
 export class CustomerDashboardModule {}

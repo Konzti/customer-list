@@ -1,4 +1,4 @@
-<mat-expansion-panel (opened)="visible = true" (closed)="visible = false">
+<mat-expansion-panel *ngIf="data" (opened)="visible = true" (closed)="visible = false">
   <mat-expansion-panel-header
     class="customer-row"
     [ngClass]="{ selected: change === true }"
@@ -13,7 +13,7 @@
     </span>
   </mat-expansion-panel-header>
   <app-customer-detail
-    (clicked)="toggleColor()"
+    (clicked)="toggleColor($event)"
     [data]="data"
   ></app-customer-detail>
 </mat-expansion-panel>

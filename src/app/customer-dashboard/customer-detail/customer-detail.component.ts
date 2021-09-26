@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-// import { Observable } from 'rxjs';
+import { Customer } from '../mock-server/customer';
 
 @Component({
   selector: 'app-customer-detail',
@@ -7,16 +7,18 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./customer-detail.component.css'],
 })
 export class CustomerDetailComponent implements OnInit {
-  @Input() data?: any;
-  @Output() clicked: EventEmitter<any> = new EventEmitter();
-  clickedButton: boolean = false;
+  @Input() data?: Customer;
 
-  onClick(): void {
-    this.clicked.emit();
-    this.clickedButton = !this.clickedButton;
-  }
+  @Output() clicked = new EventEmitter<boolean>();
+
+  clickedButton: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  onClick(): void {
+    this.clickedButton = !this.clickedButton;
+    this.clicked.emit(this.clickedButton);
+  }
 }
