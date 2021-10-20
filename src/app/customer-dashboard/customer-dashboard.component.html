@@ -1,7 +1,9 @@
 <div class="container" fxLayout="column" fxFlexAlign="center">
   <h3>{{ title | uppercase }}</h3>
+   <mat-spinner diameter="40" fxFlexAlign="center" *ngIf="showSpinner"></mat-spinner>
+   <!-- <button *ngIf="!customers$.length"(click)="fetchCustomers()">Fetch Users</button> -->
   <div
-    *ngIf="customers | async"
+    *ngIf="customers$.length"
     class="customer"
     fxLayout="column"
     fxLayout.xs="column"
@@ -9,7 +11,7 @@
     fxLayoutGap=".5rem"
     fxLayoutAlign="space-between"
   >
-    <div *ngFor="let customer of customers | async" [class.test]="customer === test">
+    <div *ngFor="let customer of customers$" [class.test]="customer === test">
       <mat-expansion-panel (opened)="visible = true" (closed)="visible = false">
         <mat-expansion-panel-header
           class="customer-row"

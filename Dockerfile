@@ -1,2 +1,3 @@
-FROM httpd:2.4-alpine
-COPY ./dist/customer-list /usr/local/apache2/htdocs/
+FROM nginx:latest
+COPY /dist/customer-list /usr/share/nginx/html
+EXPOSE 80
