@@ -1,14 +1,34 @@
 <div class="container" fxLayout="column" fxFlexAlign="center">
-  <h3>{{title| uppercase}}</h3>
-  <div class="customer"
+  <h3>{{ title | uppercase }}</h3>
+  <div
+    *ngIf="customers | async"
+    class="customer"
     fxLayout="column"
     fxLayout.xs="column"
     fxLayoutWrap="no-wrap"
-    fxLayoutGap=".25rem"
+    fxLayoutGap=".5rem"
     fxLayoutAlign="space-between"
   >
-    <ng-container *ngFor="let c of customers; let i = index">
-      <app-customer [data]="c"></app-customer>
-    </ng-container>
+    <div *ngFor="let customer of customers | async" [class.test]="customer === test">
+      <mat-expansion-panel (opened)="visible = true" (closed)="visible = false">
+        <mat-expansion-panel-header
+          class="customer-row"
+          [ngClass]="{ selected: change === true }"
+        >
+          <mat-panel-title>
+            {{ customer.name.firstname | titlecase }}
+            {{ customer.name.lastname | titlecase }}
+          </mat-panel-title>
+          <span>
+            {{ visible ? "hide address" : "click to see address" }}
+          </span>
+        </mat-expansion-panel-header>
+        <app-customer-detail
+          (button)="toggleTest($event)"
+          (clicked)="toggleColor($event)"
+          [data]="customer"
+        ></app-customer-detail>
+      </mat-expansion-panel>
+    </div>
   </div>
 </div>

@@ -5,6 +5,8 @@ mat-panel-title {
 button {
   margin-top: 0.5rem;
 }
-/* .details {
-    background-color: blue;
-} */
+mat-spinner {
+  position: absolute;
+  right: 50%;
+  top: 30%;
+}
